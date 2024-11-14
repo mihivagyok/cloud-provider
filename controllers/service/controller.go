@@ -870,8 +870,8 @@ func (c *Controller) lockedUpdateLoadBalancerHosts(service *v1.Service, hosts []
 }
 
 func wantsLoadBalancer(service *v1.Service) bool {
-	// if LoadBalancerClass is set, the user does not want the default cloud-provider Load Balancer
-	return service.Spec.Type == v1.ServiceTypeLoadBalancer && service.Spec.LoadBalancerClass == nil
+	// if LoadBalancerClass is set, the user does want this cloud-provider Load Balancer
+	return service.Spec.Type == v1.ServiceTypeLoadBalancer && service.Spec.LoadBalancerClass != nil
 }
 
 func loadBalancerIPsAreEqual(oldService, newService *v1.Service) bool {
